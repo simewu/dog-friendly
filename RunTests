@@ -1,0 +1,3 @@
+#!/bin/bash
+cucumber features/navigation_cucumber.feature
+cucumber features/map_cucumber.feature

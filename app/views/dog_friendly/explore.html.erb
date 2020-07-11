@@ -1,0 +1,98 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" type="image/x-icon" href="<%= asset_path 'favicon.ico' %>"/>
+		<link rel="apple-touch-icon" type="image/x-icon" href="<%= asset_path 'favicon.ico' %>">
+		<!-- jQuery and Bootstrap -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm_7-2A72buUTnc7hlf2FYJW77RwAybvo&libraries=places&callback=initMap" async defer></script>
+		
+		<!--Google sign in stuff-->
+		<meta name="google-signin-scope" content="profile email">
+    	<meta name="google-signin-client_id" content="163505967924-6t7ogg0g72ql6sgh5fk5ju3pgmprq3mc.googleusercontent.com">
+    	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	</head>
+	
+	<body>
+		<nav class="navbar navbar-inverse">
+			<img id="profile-photo" src="<%= asset_path 'favicon.ico' %>">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>                        
+					</button>
+					<a class="navbar-brand" href="/"></a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li><a href="/">Home</a></li>
+						<li class="active"><a href="explore">Explore</a></li>
+						<li><a href="about">About Us</a></li>
+	
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="explore#Veterinarian" id="emergency-btn" class="btn btn-danger">Emergency</a></li>
+						<!-- FOR GOOGLE LOGIN-->
+    					<li><a href="#" id="google-button" class="btn btn-secondary g-signin2" onclick="onSignIn" data-onsuccess="onSignIn"></a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="list-group" id="search-results" style="display: none">
+		</div>
+		<div id="map"></div>
+		<!--
+		<input class="mr-sm-2" type="search" placeholder="What can we help you locate?" aria-label="Type a search query in, and press Enter" id="search-bar" style="display: none" spellcheck="false">
+		-->
+		
+		<div class="input-group" id="search-group" style="display: none">
+           	<input type="search" placeholder="What can we help you locate?" aria-label="Type a search query in, and press Enter" id="search-bar" spellcheck="false">
+            <div class="input-group-btn">
+                <div class="btn-group" role="group">
+                    <div id="search-dropdown" class="dropdown dropdown-lg">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                            <form id="search-form" class="form-horizontal" role="form">
+                              
+                              <div class="form-group">
+                                <input type="checkbox" id="search-dog-friendly" type="text" style='width:15px;height:15px;margin:5px' checked/>
+                                <label for="search-dog-friendly">Dog Friendly Locations</label>
+                              </div>
+                              
+                              <div class="form-group" style="width: 200px">
+                                <label for="search-filter-by">Filter by</label>
+                                <select id="search-filter-by" class="form-control w-100">
+                                    <option value="" selected></option>
+                                    <option value="hotels">Hotels</option>
+                                    <option value="restaurants">Restaurants</option>
+                                    <option value="activities">Activities</option>
+                                    <option value="events">Events</option>
+                                    <option value="services">Services</option>
+                                    <option value="destinations">Destinations</option>
+                                </select>
+                              </div>
+                              <div class="form-group">
+                                <label for="search-near">Near location</label>
+                                <input id="search-near" class="form-control" type="text" />
+                              </div>
+                              <div class="form-group">
+                                <label for="search-contains">Contains the words</label>
+                                <input id="search-contains" class="form-control" type="text" />
+                              </div>
+                              <button type="button" class="btn btn-primary" onclick="makeSearchQuery()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+                            </form>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="makeSearchQuery()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </div>
+            </div>
+        </div>
+          
+		<!-- <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=f36c090f-db46-44db-86fb-4143dd4e7341"></script> -->
+	</body>
+</html>
